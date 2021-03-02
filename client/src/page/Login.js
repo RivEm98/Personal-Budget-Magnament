@@ -1,9 +1,9 @@
-import CardLoginRegister from '../components/CardLoginRegister/CardLoginRegister'
+import CardLogin from '../components/CardLogin/CardLogin'
 
 const Login = ()=>
 (
     <div>
-        <CardLoginRegister />
+        <CardLogin name="Log In"/>
     </div>
 )
 

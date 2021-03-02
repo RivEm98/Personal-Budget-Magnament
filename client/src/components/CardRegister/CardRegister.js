@@ -1,14 +1,24 @@
 import React from 'react'
 import ButtonSubmit from '../ButtonSubmit/ButtonSubmit'
 import ButtonLink from '../ButtonLink/ButtonLink'
-import './CardLoginRegister.css'
+import '../CardLogin/CardLoginRegister.css'
 
-const CardLoginRegister = ()=>
+const CardRegister = (props)=>
 (
     <div className="container-card d-flex justify-content-center align-items-center">
         <div class="card-login">
             <form>
-                <p className="login text-center">Log in</p>
+                <p className="login text-center">{props.name}</p>
+                <div class="container-input d-flex align-items-center">
+                    <input 
+                        type="text" 
+                        name="name"
+                        id="name"
+                        placeholder="Name"
+                        className="col-11 input-login"
+                        />
+                    <span><i className="bi bi-person-fill login-icon"></i></span>
+                </div>
                 <div class="container-input d-flex align-items-center">
                     <input 
                         type="email" 
@@ -17,7 +27,7 @@ const CardLoginRegister = ()=>
                         placeholder="Email"
                         className="col-11 input-login"
                         />
-                    <span><i className="bi bi-person-fill login-icon"></i></span>
+                    <span><i className="bi bi-envelope-fill login-icon"></i></span>
                 </div>
                 <div className="container-input d-flex align-items-center">
                     <input 
@@ -33,12 +43,12 @@ const CardLoginRegister = ()=>
                 </div>
                 
                 <br/>
-                <ButtonSubmit name="LOG IN" />
+                <ButtonSubmit name="REGISTER" />
             </form>
-                <ButtonLink name="REGISTER" to="/register"/>
+                <ButtonLink name="GO BACK" to="/"/>
         </div>
         
     </div>
 )
 
-export default CardLoginRegister;
+export default CardRegister;
