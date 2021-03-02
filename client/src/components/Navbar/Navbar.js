@@ -20,22 +20,22 @@ const Navbar = (props)=>
                         <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                             <li className="nav-item">
-                                <a className="nav-link" aria-current="page" href="#">Dashboard</a>
+                                <Link className="nav-link" aria-current="page" to={props.to}>Dashboard</Link>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" aria-current="page" href="#">Income</a>
+                                <Link className="nav-link" aria-current="page" to={props.to}>Income</Link>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" aria-current="page" href="#">Expenses</a>
+                                <Link className="nav-link" aria-current="page" to={props.to}>Expenses</Link>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" aria-current="page" href="#">Category Income</a>
+                                <Link className="nav-link" aria-current="page" to={props.to}>Category Income</Link>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" aria-current="page" href="#">Category Expenses</a>
+                                <Link className="nav-link" aria-current="page" to={props.to}>Category Expenses</Link>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" aria-current="page" href="#">My Account</a>
+                                <Link className="nav-link" aria-current="page" to={props.to}>My Account</Link>
                             </li>
                         </ul>
                         </div>
@@ -47,8 +47,8 @@ const Navbar = (props)=>
                         {props.userName}
                     </button>
                     <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li><a className="dropdown-item" href="#">My account</a></li>
-                        <li><a className="dropdown-item" href="#">Log out</a></li>
+                        <li><Link className="dropdown-item" to="/account">My account</Link></li>
+                        <li><Link className="dropdown-item" to="/">Log out</Link></li>
                     </ul>
                 </div>
             </div>
