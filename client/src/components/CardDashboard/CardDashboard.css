@@ -1,0 +1,11 @@
+.card-dashboard-container{
+    background-color: #ffff;
+}
+.card-text-dashboard{
+    font-size: 13px;
+    margin: 0;
+    margin-top: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
