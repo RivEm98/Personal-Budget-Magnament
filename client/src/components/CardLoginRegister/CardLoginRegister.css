@@ -1,0 +1,27 @@
+.container-card{
+    height: 100vh;
+}
+.card-login{
+    width: 500px;
+    height: 400px;
+    padding: 40px 20px;
+    background-color: #fff;
+}
+.input-login{
+    border: none;
+}
+.input-login:focus{
+    outline: none;
+}
+.container-input{
+    margin: 10px 0px;
+    border: 1px solid rgb(231, 231, 231);
+    height: 40px;
+}
+.login-icon{
+    font-size: 20px;
+}
+.login{
+    font-size: 24px;
+    font-weight: 400;
+}
