@@ -1,0 +1,12 @@
+.sidebar{
+    background-color: #222d32;
+    padding: 0px;
+    height: 100vh;
+    font-weight: 300;
+}
+.navigate{
+    color: #617a85;
+    padding: 10px 20px;
+    background-color: #1a2226;
+    margin: 0px;
+}

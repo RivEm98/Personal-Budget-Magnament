@@ -1,0 +1,15 @@
+.button-sidebar{
+    padding: 5px 20px;
+}
+.link-sidebar{
+    color: #b8c7ce;
+    width: 100%; 
+}
+.link-sidebar:hover{
+    color: #b8c7ce;
+    
+}
+.button-sidebar:hover{
+    background-color: #1a2225;
+    border-left: 2px solid #00c0ef;
+}

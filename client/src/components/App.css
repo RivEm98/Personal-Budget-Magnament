@@ -3,3 +3,16 @@ body{
     font-family: "Poppins";
     background-color: #ebebeb;
 }
+.row{
+    margin: 0px;
+}
+ul{
+    margin: 0;
+    padding: 0;
+}
+li{
+    list-style: none;
+}
+a{
+    text-decoration: none;
+}
