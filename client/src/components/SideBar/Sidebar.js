@@ -4,7 +4,7 @@ import './Sidebar.css'
 
 const Sidebar = ()=>
 (
-    <div className="col-2 sidebar">
+    <div className="col-md-4 col-lg-3 col-xl-2 sidebar d-none d-md-block d-lg-block">
         <p className="navigate">NAVIGATE</p>
         <ul>
             <ButtonSidebar name="Dashboard" icon="bi bi-house-fill"/>

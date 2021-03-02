@@ -1,0 +1,38 @@
+.navbar{
+    height: 7vh;
+    background-color: #00c0ef;
+    margin: 0px;
+    padding: 0px;
+}
+.page-name{
+    background-color: #048eb1;
+    height: 7vh;
+    color: #ffffff;
+}
+.user-name-content{
+    background-color: #00c0ef;
+}
+.user-name{
+    color: #ffffff;
+}
+.user-name:hover{
+    color: #ffffff;
+}
+.user-name:focus{
+    outline: none;
+    border: none;
+    box-shadow: none;
+}
+.navbar-toggler{
+    border: none;
+}
+.navbar-toggler:focus{
+    box-shadow: none;
+}
+.nav-link:hover{
+    border-left: 2px solid #048eb1;
+}
+.nav-link{
+    color: #ffffff !important;
+    padding-left: 10px !important;
+}
