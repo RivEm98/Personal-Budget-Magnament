@@ -6,13 +6,16 @@ module.exports = {
     register:(req,res)=>{
         let errors = validationResult(req);
 
+        console.log(req.body.password)
+
         if(errors.isEmpty()){
 
             db.Users.create(
                 {
                     name: req.body.name.trim(),
                     email: (req.body.email).trim(),
-                    password: bcrypt.hashSync(req.body.password, 10)
+                    /* password: bcrypt.hashSync(req.body.password, 10) */
+                    password: req.body.password
                 }
             )
             .then(result=>{
@@ -28,22 +31,34 @@ module.exports = {
             })
         }
     },
-    registerr:(req,res)=>{
-        const name = req.body.username;
-        const email = req.body.useremail;
-        const password = req.body.userpassword;
-        console.log("----------------------------------------------")
-        console.log(req.body)
-        console.log("----------------------------------------------")
-        /* db.Users.create({
-            name,
-            email,
-            password
-        })
-        .then((data) => {
-            console.log(data);
-            res.send("successful")
-        })
-        .catch((error) => res.send(error)); */
+    login:(req,res)=>{
+        let errors = validationResult(req);
+        
+        if(!errors.isEmpty()){
+            res.send({
+                errors: errors.mapped(),
+                old:req.body,
+                user:req.session.user
+            })
+        }else{
+            db.Users.findOne({
+                where:{
+                    email:req.body.email
+                }
+            })
+            .then(data => {
+                console.log('------------------DATA');
+                console.log(data)
+                req.session.user = {
+                    id:data.id,
+                    name:data.name,
+                    email:data.email,
+                }
+
+                res.locals.user = req.session.user
+                
+                res.send('successful')
+            })
+        }
     }
 }
