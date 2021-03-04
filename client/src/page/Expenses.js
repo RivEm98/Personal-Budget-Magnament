@@ -2,6 +2,7 @@ import React from 'react'
 import Sidebar from '../components/SideBar/Sidebar'
 import Navbar from '../components/Navbar/Navbar'
 import Dashboard from '../components/Dashboard/Dashboard'
+import TableIncExp from '../components/TableIncomeExpenses/TableIncExp'
 
 const Expenses = () => 
 (
@@ -11,7 +12,7 @@ const Expenses = () =>
             <div className="row p-0">
                 <Sidebar />
                 <Dashboard name="Expenses">
-
+                    <TableIncExp modalname="New Expenses"/>
                 </Dashboard>
             </div>
             

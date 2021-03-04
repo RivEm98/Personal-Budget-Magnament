@@ -3,7 +3,7 @@ import './ButtonSubmit.css'
 
 const ButtonSubmit = (props)=>
 (
-    <button type="submit" className="col-12 button-submit">{props.name}</button>
+    <button onClick={props.event} className="col-12 button-submit">{props.name}</button>
 )
 
 export default ButtonSubmit;

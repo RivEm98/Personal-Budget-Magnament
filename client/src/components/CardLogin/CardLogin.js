@@ -6,10 +6,10 @@ import './CardLoginRegister.css'
 const CardLogin = (props)=>
 (
     <div className="container-card d-flex justify-content-center align-items-center">
-        <div class="card-login">
-            <form>
+        <div className="card-login">
+            <form >
                 <p className="login text-center">{props.name}</p>
-                <div class="container-input d-flex align-items-center">
+                <div className="container-input d-flex align-items-center">
                     <input 
                         type="email" 
                         name="email"
@@ -28,7 +28,7 @@ const CardLogin = (props)=>
                         className="col-11 input-login"
                         />
                     <span>
-                        <i class="bi bi-lock-fill login-icon"></i>
+                        <i className="bi bi-lock-fill login-icon"></i>
                     </span>
                 </div>
                 
