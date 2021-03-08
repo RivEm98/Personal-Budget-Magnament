@@ -2,6 +2,7 @@ import React from 'react'
 import Sidebar from '../components/SideBar/Sidebar'
 import Navbar from '../components/Navbar/Navbar'
 import Dashboard from '../components/Dashboard/Dashboard'
+import TableCategories from '../components/TableCategories/TableCategories'
 
 const CategoryIncome = () => 
 (
@@ -12,6 +13,7 @@ const CategoryIncome = () =>
                 <Sidebar />
                 <Dashboard name="Category Income">
 
+                    <TableCategories/>
                 </Dashboard>
             </div>
             

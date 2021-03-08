@@ -22,9 +22,9 @@ const CardLogin = (props)=>{
             if(response.data.data){
                 swal('Welcome', response.data.data.name, 'success')
                 .then((value) => {
-                    /* window.location="/home" */
                     history.push('/home')
                     window.localStorage.setItem("user", response.data.data.name)
+                    window.localStorage.setItem("email", response.data.data.email)
                 });
 
             }else{

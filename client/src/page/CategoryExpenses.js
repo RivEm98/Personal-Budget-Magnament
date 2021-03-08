@@ -2,6 +2,7 @@ import React from 'react'
 import Sidebar from '../components/SideBar/Sidebar'
 import Navbar from '../components/Navbar/Navbar'
 import Dashboard from '../components/Dashboard/Dashboard'
+import TableCategories from '../components/TableCategories/TableCategories'
 
 const CategoryExpenses = () => 
 (
@@ -11,7 +12,7 @@ const CategoryExpenses = () =>
             <div className="row p-0">
                 <Sidebar />
                 <Dashboard name="Category Expenses">
-
+                    <TableCategories/>
                 </Dashboard>
             </div>
             
