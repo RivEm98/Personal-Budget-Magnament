@@ -6,8 +6,6 @@ module.exports = {
     register:(req,res)=>{
         let errors = validationResult(req);
 
-        console.log(req.body.password)
-
         if(errors.isEmpty()){
 
             db.Users.create(
@@ -47,8 +45,7 @@ module.exports = {
                 }
             })
             .then(data => {
-                console.log('------------------DATA');
-                console.log(data)
+                
                 req.session.user = {
                     id:data.id,
                     name:data.name,
@@ -57,8 +54,14 @@ module.exports = {
 
                 res.locals.user = req.session.user
                 
-                res.send('successful')
+                res.send({data:req.session.user})
             })
         }
+    },
+    getUsers:(req,res)=>{
+        db.Users.findAll()
+        .then(data=>{
+            res.send(data)
+        })
     }
 }

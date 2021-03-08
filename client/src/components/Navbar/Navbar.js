@@ -1,9 +1,20 @@
-import React from 'react'
+import React,{useState,useEffect} from 'react'
 import {Link} from 'react-router-dom'
 import './Navbar.css'
+import { useHistory } from 'react-router-dom';
 
-const Navbar = (props)=>
-(
+const Navbar = (props)=>{
+const history = useHistory()
+const logOut = () =>{
+    window.localStorage.clear()
+    history.push('/')
+}
+const [userName, setUserName]= useState('')
+
+useEffect(() => {
+    setUserName(window.localStorage.getItem('user'))
+}, [])
+return(
     <div className="p-0">
         <div className="row navbar">
             <div className="col-12 col-md-4 col-lg-3 col-xl-2 page-name d-flex justify-content-center align-items-center">
@@ -20,22 +31,22 @@ const Navbar = (props)=>
                         <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                             <li className="nav-item">
-                                <Link className="nav-link" aria-current="page" to={props.to}>Dashboard</Link>
+                                <Link className="nav-link" aria-current="page" to="/home">Dashboard</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" aria-current="page" to={props.to}>Income</Link>
+                                <Link className="nav-link" aria-current="page" to="/income">Income</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" aria-current="page" to={props.to}>Expenses</Link>
+                                <Link className="nav-link" aria-current="page" to="/expenses">Expenses</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" aria-current="page" to={props.to}>Category Income</Link>
+                                <Link className="nav-link" aria-current="page" to="/category/income">Category Income</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" aria-current="page" to={props.to}>Category Expenses</Link>
+                                <Link className="nav-link" aria-current="page" to="/category/expenses">Category Expenses</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" aria-current="page" to={props.to}>My Account</Link>
+                                <Link className="nav-link" aria-current="page" to="/account">My Account</Link>
                             </li>
                         </ul>
                         </div>
@@ -44,16 +55,16 @@ const Navbar = (props)=>
                 {/* user name */}
                 <div className="dropdown">
                     <button className="btn user-name" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                        {props.userName}
+                        {userName}
                     </button>
                     <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                         <li><Link className="dropdown-item" to="/account">My account</Link></li>
-                        <li><Link className="dropdown-item" to="/">Log out</Link></li>
+                        <li><button onClick={logOut} className="dropdown-item">Log out</button></li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
-)
+)}
 
 export default Navbar;

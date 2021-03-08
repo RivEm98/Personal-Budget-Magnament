@@ -4,6 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var session = require('express-session')
+const localsUserCheck = require('./middlewares/localsUserCheck');
 const cors = require('cors')
 
 var indexRouter = require('./routes/index');
@@ -21,7 +22,9 @@ app.use(cors())
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(session({secret:"RivEm"}));
+app.use(session({secret:"RivEm",resave: false,
+saveUninitialized: true}));
+app.use(localsUserCheck);
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);

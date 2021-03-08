@@ -1,11 +1,13 @@
-import React, { useState } from 'react'
-import ButtonSubmit from '../ButtonSubmit/ButtonSubmit'
-import ButtonLink from '../ButtonLink/ButtonLink'
-import Axios from 'axios'
+import React, { useState } from 'react';
+import ButtonSubmit from '../ButtonSubmit/ButtonSubmit';
+import ButtonLink from '../ButtonLink/ButtonLink';
+import Axios from 'axios';
 import swal from 'sweetalert';
-import './CardLoginRegister.css'
+import './CardLoginRegister.css';
+import { useHistory } from 'react-router-dom';
 
 const CardLogin = (props)=>{
+    const history = useHistory()
     const [userEmail, setUserEmail] = useState('');
     const [userPassword, setUserPassword] = useState('');
 
@@ -17,15 +19,14 @@ const CardLogin = (props)=>{
         setErrorPassword("")
         Axios.post("http://localhost:3005/users/login",{email: userEmail, password:userPassword})
         .then((response)=>{
-            console.log(response.data)
-            if(response.data === "successful"){
-                console.log('//////////////////////////////////////////////////////')
-                console.log(response.data)
-                swal('Welcome', '', 'success')
+            if(response.data.data){
+                swal('Welcome', response.data.data.name, 'success')
                 .then((value) => {
-                    window.location="/home"
+                    /* window.location="/home" */
+                    history.push('/home')
+                    window.localStorage.setItem("user", response.data.data.name)
                 });
-                
+
             }else{
                 console.log(response.data.errors)
                 if(response.data.errors){
@@ -36,7 +37,7 @@ const CardLogin = (props)=>{
                         setErrorPassword(response.data.errors.password.msg)
                     }
                 }
-    
+
                 swal('Something went wrong', "" ,'error')
             }
         })
@@ -75,12 +76,12 @@ return(
                     </span>
                 </div>
                 <span className="msg-input-error">{errorPassword}</span>
-                
+
                 <br/>
                 <ButtonSubmit event={login} name="LOG IN" />
                 <ButtonLink name="REGISTER" to="/register"/>
         </div>
-        
+
     </div>
 )}
 

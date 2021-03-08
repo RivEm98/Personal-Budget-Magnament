@@ -1,14 +1,15 @@
-import React from 'react'
+import React, { useState,useEffect}from 'react'
+
 import Sidebar from '../components/SideBar/Sidebar'
 import Navbar from '../components/Navbar/Navbar'
 import Dashboard from '../components/Dashboard/Dashboard'
 import CardDashboard from '../components/CardDashboard/CardDashboard'
 
-const Home = () => 
-(
-    <div>
-        <div class="row">
-            <Navbar pageName="ALKEMY" userName="Emiliano Rivarola"/>
+
+const Home = () => {
+return(
+        <div className="row">
+            <Navbar pageName="ALKEMY"/>
             <div className="row p-0">
                 <Sidebar />
                 <Dashboard name="Dashboard">
@@ -20,7 +21,6 @@ const Home = () =>
             </div>
             
         </div>
-    </div>
-)
+)}
 
 export default Home;
