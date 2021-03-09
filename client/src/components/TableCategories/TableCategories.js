@@ -1,25 +1,34 @@
-import React,{useState} from 'react'
+import React,{useState, useEffect} from 'react'
 import Axios from 'axios'
 import swal from 'sweetalert';
-import { useHistory } from 'react-router-dom';
+
 
 const TableCategories = (props) => {
 
-    const history = useHistory()
     const [name, setName]= useState('')
+    const [categories, setCategories]= useState([])
 
     const handleSubmit = ()=>{
         Axios.post('http://localhost:3005/operations/category/incexp',{name: name})
         .then((response)=>{
-            console.log(response.data)
             if (response.data === "successful") {
                 swal('Success', 'The category was added successfully', 'success')
+                .then(value=>{
+                    window.location.reload()
+                })
             }else{
                 swal('Error', "You must enter a name for the category", 'error')
             }
         })
     }
-
+    
+    useEffect(() => {
+            Axios.get('http://localhost:3005/operations/category/get')
+            .then(response=>{
+                setCategories(response.data)
+            })
+    },[])
+    
     return (
         <div className="container">
             <div className="d-flex justify-content-between">
@@ -27,7 +36,7 @@ const TableCategories = (props) => {
                 <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalll">
                    + New
                 </button>
-            <div className="modal" tabindex="-1" id="modalll">
+            <div className="modal" tabIndex="-1" id="modalll">
                 <div className="modal-dialog">
                     <form action="" method="POST">
                         <div className="modal-content">
@@ -37,7 +46,7 @@ const TableCategories = (props) => {
                         </div>
                         <div className="modal-body">
                             <div className="mb-3">
-                                <label for="exampleFormControlTextarea1" className="form-label">Name</label>
+                                <label className="form-label">Name</label>
                                 <input 
                                 type="text" 
                                 name="name"
@@ -68,21 +77,17 @@ const TableCategories = (props) => {
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>Otto</td>
-                </tr>
-                <tr>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>Thornton</td>
-                </tr>
-                <tr>
-                    <td>Larry the Bird</td>
-                    <td>Larry the Bird</td>
-                    <td>@twitter</td>
-                </tr>
+                {
+                    categories.map((cat,i)=>{
+                        return(
+                        <tr key={i}>
+                            <td>{cat.name}</td>
+                            <td>{cat.id}</td>
+                            <td></td>
+                        </tr>)
+                    })
+                }
+                
             </tbody>
         </table>
         </div>

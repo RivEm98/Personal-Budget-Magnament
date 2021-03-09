@@ -7,12 +7,12 @@ import TableIncExp from '../components/TableIncomeExpenses/TableIncExp'
 const Income = () => 
 (
     <div>
-        <div class="row">
+        <div className="row">
             <Navbar pageName="ALKEMY" userName="Emiliano Rivarola"/>
             <div className="row p-0">
                 <Sidebar />
                 <Dashboard name="Income">
-                    <TableIncExp modalname="New Income"/>
+                    <TableIncExp modalname="New Income" category="INCOME"/>
                 </Dashboard>
             </div>
             

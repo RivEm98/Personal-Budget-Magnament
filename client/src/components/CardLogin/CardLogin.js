@@ -23,6 +23,7 @@ const CardLogin = (props)=>{
                 swal('Welcome', response.data.data.name, 'success')
                 .then((value) => {
                     history.push('/home')
+                    window.localStorage.setItem("id", response.data.data.id)
                     window.localStorage.setItem("user", response.data.data.name)
                     window.localStorage.setItem("email", response.data.data.email)
                 });

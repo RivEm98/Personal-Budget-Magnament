@@ -7,6 +7,7 @@ let controllers = require('../controllers/operations');
 
 /* Routes */
 router.post('/category/incexp', controllers.catIncExp)
+router.post('/add/income', controllers.addIncome)
 
 router.get('/category/get', controllers.getCategories)
 

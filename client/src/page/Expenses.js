@@ -12,7 +12,7 @@ const Expenses = () =>
             <div className="row p-0">
                 <Sidebar />
                 <Dashboard name="Expenses">
-                    <TableIncExp modalname="New Expenses"/>
+                    <TableIncExp modalname="New Expenses" category="EXPENSES"/>
                 </Dashboard>
             </div>
             
