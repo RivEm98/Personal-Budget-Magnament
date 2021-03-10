@@ -11,5 +11,6 @@ router.post('/register',registerValidator, controllers.register)
 router.post('/login',loginValidator, controllers.login)
 
 router.get('/get/users', controllers.getUsers)
+router.get('/get/operations/:id', controllers.getOperations)
 
 module.exports = router;

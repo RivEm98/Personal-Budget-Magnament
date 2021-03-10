@@ -6,7 +6,9 @@ module.exports = {
             return res.send('You must enter a name for the category')
         }else{
             db.Categories.create({
-                name:req.body.name
+                name:req.body.name,
+                date:req.body.date,
+                user_id: req.body.user
             })
             .then(result=>{
                 res.send("successful")
@@ -17,18 +19,17 @@ module.exports = {
         }
     },
     getCategories:(req,res)=>{
-        db.Categories.findAll()
-        .then(response=>{
-            res.send(response)
+        const user = req.params.id
+        db.Categories.findAll({
+            where:{user_id:user},
+            include:[{association:"Operations"},{association:"Users"}]
         })
-        .catch(error=>{
-            res.send(error)
+        .then(data=>{
+            res.send(data)
         })
     },
     addIncome:(req,res)=>{
-        console.log('///////// DATA FROM OPERATIONS //////////')
         console.log(req.body)
-        console.log('/////////////////////////////////////////')
         db.Operations.create({
             user_id: req.body.user,
             category_id: req.body.categorySelect,
@@ -41,7 +42,6 @@ module.exports = {
             res.send('successfull')
         })
         .catch(error=>{
-            console.log(error)
             res.send(error)
         })
     },

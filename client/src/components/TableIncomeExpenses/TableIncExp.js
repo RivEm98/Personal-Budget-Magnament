@@ -5,15 +5,17 @@ import Axios from "axios";
 
 const TableIncExp = (props) => {
   const [categories, setCategories] = useState([]);
-  const [user, setUser] = useState('')
+  /* const [user, setUser] = useState('') */
+  const userId = window.localStorage.getItem('id');
   const [description, setDescription] = useState("");
   const [amount, setAmount] = useState("");
   const [categorySelect, setCategorySelect] = useState("");
   const [date, setDate] = useState("");
   const [operationSelect, setOperationSelect] = useState("");
+  const [operations, setOperations] = useState([]);
 
   const submitTab = ()=>{
-    Axios.post('http://localhost:3005/operations/add/income',{description:description, amount:amount, categorySelect:categorySelect, date:date, operationSelect:operationSelect,user:user})
+    Axios.post('http://localhost:3005/operations/add/income',{description:description, amount:amount, categorySelect:categorySelect, date:date, operationSelect:operationSelect,user:userId})
     .then(response=>{
       if (response.data === "successfull") {
         swal('Success', 'The operation was added successfully', 'success')
@@ -27,13 +29,20 @@ const TableIncExp = (props) => {
   }
 
   useEffect(() => {
-    Axios.get("http://localhost:3005/operations/category/get").then(
-      (response) => {
+    Axios.get(`http://localhost:3005/operations/category/${userId}`)
+    .then((response) => {
+      console.log('////////// categorias /////////');
+      console.log(response.data);
         setCategories(response.data);
-      }
-    );
-    setUser(window.localStorage.getItem('id'))
-  }, []);
+      });
+      
+      Axios.get(`http://localhost:3005/users/get/operations/${userId}`)
+      .then((response)=>{
+        console.log('////////// operaciones /////////');
+        console.log(response.data);
+        setOperations(response.data);
+      })}, []);
+
   return (
     <div className="">
       <div className="d-flex justify-content-between">
@@ -46,7 +55,9 @@ const TableIncExp = (props) => {
               Search by category
             </option>
             {categories.map((cat, i) => {
-              return <option key={i}>{cat.name}</option>;
+              if (cat.user_id == userId) {
+                return <option key={i}>{cat.name}</option>;
+              }
             })}
           </select>
         </div>
@@ -106,7 +117,8 @@ const TableIncExp = (props) => {
                       >
                         <option selected>-Category-</option>
                         {categories.map((cat, i) => {
-                          return <option key={i} value={cat.id}>{cat.name}</option>;
+                            return  <option key={i} value={cat.id}>{cat.name}</option>;
+                        
                         })}
                       </select>
                     </div>
@@ -157,33 +169,40 @@ const TableIncExp = (props) => {
           <tr>
             <th scope="col">Date</th>
             <th scope="col">Description</th>
-            <th scope="col">Quantity</th>
+            <th scope="col">Amount</th>
             <th scope="col">Category</th>
             <th scope="col"></th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td>@mdo</td>
-          </tr>
-          <tr>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>Thornton</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-          </tr>
-          <tr>
-            <td>Larry the Bird</td>
-            <td>Larry the Bird</td>
-            <td>@twitter</td>
-            <td>@twitter</td>
-            <td>@fat</td>
-          </tr>
+        {operations.map((op, i) => {
+          if (props.category == "INCOME") {
+            if(op.operation == "income"){
+              return (
+                <tr key={i}>
+                  <td>{op.date}</td>
+                  <td>{op.description}</td>
+                  <td>{op.amount}</td>
+                  <td>{op.Categories.name}</td>
+                  <td></td>
+                </tr>
+              );
+            }
+          }else{
+            if(op.operation == "expenses"){
+              return (
+                <tr key={i}>
+                  <td>{op.date}</td>
+                  <td>{op.description}</td>
+                  <td>{op.amount}</td>
+                  <td>{op.Categories.name}</td>
+                  <td></td>
+                </tr>
+              );
+            }
+          }
+
+          })}
         </tbody>
       </table>
     </div>

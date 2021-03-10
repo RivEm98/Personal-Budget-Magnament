@@ -9,6 +9,6 @@ let controllers = require('../controllers/operations');
 router.post('/category/incexp', controllers.catIncExp)
 router.post('/add/income', controllers.addIncome)
 
-router.get('/category/get', controllers.getCategories)
+router.get('/category/:id', controllers.getCategories)
 
 module.exports = router;

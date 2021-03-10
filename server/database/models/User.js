@@ -34,6 +34,10 @@ module.exports = (sequelize, dataTypes) => {
         User.hasMany(models.Operations,{
             as:"Operations",
             foreingKey:"id_operation"
+        }),
+        User.hasMany(models.Categories,{
+            as:"Categories",
+            foreingKey:"user_id"
         })
     }
     return User

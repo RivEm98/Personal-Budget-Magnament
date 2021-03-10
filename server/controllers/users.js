@@ -63,5 +63,15 @@ module.exports = {
         .then(data=>{
             res.send(data)
         })
+    },
+    getOperations:(req,res)=>{
+        const user = req.params.id
+        db.Operations.findAll({
+            where:{user_id:user},
+            include:[{association:"Categories"},{association:"user"}]
+        })
+        .then(data=>{
+            res.send(data)
+        })
     }
 }
