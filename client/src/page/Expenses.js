@@ -7,7 +7,7 @@ import TableIncExp from '../components/TableIncomeExpenses/TableIncExp'
 const Expenses = () => 
 (
     <div>
-        <div class="row">
+        <div className="row">
             <Navbar pageName="ALKEMY" userName="Emiliano Rivarola"/>
             <div className="row p-0">
                 <Sidebar />

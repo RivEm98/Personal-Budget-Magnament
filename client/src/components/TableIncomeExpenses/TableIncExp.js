@@ -5,7 +5,6 @@ import Axios from "axios";
 
 const TableIncExp = (props) => {
   const [categories, setCategories] = useState([]);
-  /* const [user, setUser] = useState('') */
   const userId = window.localStorage.getItem('id');
   const [description, setDescription] = useState("");
   const [amount, setAmount] = useState("");
@@ -31,36 +30,17 @@ const TableIncExp = (props) => {
   useEffect(() => {
     Axios.get(`http://localhost:3005/operations/category/${userId}`)
     .then((response) => {
-      console.log('////////// categorias /////////');
-      console.log(response.data);
         setCategories(response.data);
       });
       
-      Axios.get(`http://localhost:3005/users/get/operations/${userId}`)
+      Axios.get(`http://localhost:3005/users/operations/${userId}`)
       .then((response)=>{
-        console.log('////////// operaciones /////////');
-        console.log(response.data);
         setOperations(response.data);
       })}, []);
 
   return (
     <div className="">
       <div className="d-flex justify-content-between">
-        <div className="mt-2">
-          <select
-            className="form-select mb-3"
-            aria-label="Default select example"
-          >
-            <option selected disabled>
-              Search by category
-            </option>
-            {categories.map((cat, i) => {
-              if (cat.user_id == userId) {
-                return <option key={i}>{cat.name}</option>;
-              }
-            })}
-          </select>
-        </div>
         <div className="mt-2">
           <button
             type="button"
@@ -164,7 +144,7 @@ const TableIncExp = (props) => {
           </div>
         </div>
       </div>
-      <table className="table table-bordered table-bg">
+      <table className="table table-bordered table-bg mt-3">
         <thead>
           <tr>
             <th scope="col">Date</th>
@@ -200,6 +180,17 @@ const TableIncExp = (props) => {
                 </tr>
               );
             }
+          }
+          if (props.category == "") {
+              return (
+                <tr key={i}>
+                  <td>{op.date}</td>
+                  <td>{op.description}</td>
+                  <td>{op.amount}</td>
+                  <td>{op.Categories.name}</td>
+                  <td></td>
+                </tr>
+              );
           }
 
           })}

@@ -11,4 +11,6 @@ router.post('/add/income', controllers.addIncome)
 
 router.get('/category/:id', controllers.getCategories)
 
+router.delete('/:id', controllers.deleteOp)
+
 module.exports = router;

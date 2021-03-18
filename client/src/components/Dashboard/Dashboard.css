@@ -1,0 +1,12 @@
+@media(min-width:375px){
+    .dashboard-title{
+        margin-top: 40px;
+        margin-left: 10px;
+    }
+}
+@media(min-width:768px){
+    .dashboard-title{
+        margin-top: 0px;
+        margin-left: 10px;
+    }
+}

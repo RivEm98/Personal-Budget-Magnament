@@ -7,7 +7,7 @@ import TableCategories from '../components/TableCategories/TableCategories'
 const CategoryExpenses = () => 
 (
     <div>
-        <div class="row">
+        <div className="row">
             <Navbar pageName="ALKEMY" userName="Emiliano Rivarola"/>
             <div className="row p-0">
                 <Sidebar />

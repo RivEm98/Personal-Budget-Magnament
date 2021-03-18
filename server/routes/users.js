@@ -10,7 +10,9 @@ let loginValidator = require('../validators/loginValidator');
 router.post('/register',registerValidator, controllers.register)
 router.post('/login',loginValidator, controllers.login)
 
-router.get('/get/users', controllers.getUsers)
-router.get('/get/operations/:id', controllers.getOperations)
+router.get('/all ', controllers.getUsers)
+router.get('/operations/balance/:id', controllers.getBalance)
+router.get('/operations/:id', controllers.getOperations)
+router.get('/operations/:id/10', controllers.getOperationsTen)
 
 module.exports = router;

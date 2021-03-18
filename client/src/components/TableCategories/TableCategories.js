@@ -27,7 +27,6 @@ const TableCategories = (props) => {
   useEffect(() => {
     Axios.get(`http://localhost:3005/operations/category/${userId}`)
     .then((response) => {
-        console.log(response.data)
         setCategories(response.data);
       }
     );

@@ -45,4 +45,12 @@ module.exports = {
             res.send(error)
         })
     },
+    deleteOp:(req,res)=>{
+        let id = req.params.id
+        db.Operations.destroy({
+            where:{
+                id:id
+            }
+        })
+    }
 }

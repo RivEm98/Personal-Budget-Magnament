@@ -1,4 +1,5 @@
 const db = require('../database/models')
+const {format} = require('date-fns')
 const bcrypt = require('bcrypt');
 const {validationResult, body} = require('express-validator');
 
@@ -12,7 +13,6 @@ module.exports = {
                 {
                     name: req.body.name.trim(),
                     email: (req.body.email).trim(),
-                    /* password: bcrypt.hashSync(req.body.password, 10) */
                     password: req.body.password
                 }
             )
@@ -72,6 +72,52 @@ module.exports = {
         })
         .then(data=>{
             res.send(data)
+        })
+    },
+    getOperationsTen:(req,res)=>{
+        const user = req.params.id
+        db.Operations.findAll({
+            where:{user_id:user},
+            limit:10,
+            order:[['date','DESC']],
+            include:[{association:"Categories"},{association:"user"}]
+        })
+        .then(data=>{
+            res.send(data)
+        })
+    },
+    getBalance:(req,res)=>{
+        const user = req.params.id
+
+        db.Operations.findAll({
+            where:{user_id:user},
+            include:[{association:"Categories"},{association:"user"}]
+        })
+        .then(data=>{
+            let d = new Date()
+            let dateFormat = format(d,'yyyy-MM')
+            let totalIncomes = 0;
+            let totalExpenses = 0
+            
+            let totalIncomeMonth = 0
+            let totalExpensesMonth = 0
+
+            data.forEach(element => {
+                if(element.operation == 'income'){
+                    totalIncomes += element.amount
+                    if(element.date.includes(dateFormat)){
+                        totalIncomeMonth+=element.amount
+                    }
+                }else{
+                    totalExpenses += element.amount
+                    if(element.date.includes(dateFormat)){
+                        totalExpensesMonth+=element.amount
+                    }
+                }
+
+            });
+            res.send({totalIncomes,totalIncomeMonth,totalExpenses,totalExpensesMonth})
+            
         })
     }
 }
