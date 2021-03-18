@@ -52,5 +52,35 @@ module.exports = {
                 id:id
             }
         })
+    },
+    operation:(req,res)=>{
+        db.Operations.findOne({
+            where:{
+                id:req.params.id
+            },
+            include:[{association:"Categories"}]
+        })
+        .then(data=>{
+            res.send(data)
+        })
+    },
+    updateOp:(req,res)=>{
+        db.Operations.update({
+            category_id:req.body.categorySelect,
+            description:req.body.description,
+            amount:req.body.amount,
+            date:req.body.date,
+            operation:req.body.operation, 
+        },{
+            where:{
+                id:req.params.id
+            }
+        })
+        .then(data=>{
+            res.send('esta todo bien')
+        })
+        .catch(err=>{
+            res.send('algo salio mal')
+        })
     }
 }
