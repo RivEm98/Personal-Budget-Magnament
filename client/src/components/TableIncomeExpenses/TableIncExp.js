@@ -159,7 +159,7 @@ const TableIncExp = (props) => {
           if (props.category == "INCOME") {
             if(op.operation == "income"){
               return (
-                <tr key={i}>
+                <tr className="table-success" key={i}>
                   <td>{op.date}</td>
                   <td>{op.description}</td>
                   <td>{op.amount}</td>
@@ -171,7 +171,7 @@ const TableIncExp = (props) => {
           }else{
             if(op.operation == "expenses"){
               return (
-                <tr key={i}>
+                <tr className="table-danger" key={i}>
                   <td>{op.date}</td>
                   <td>{op.description}</td>
                   <td>{op.amount}</td>

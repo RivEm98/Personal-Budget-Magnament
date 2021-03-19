@@ -79,15 +79,26 @@ const Table = () => {
     );
   }, []);
   return (
-    <div className="mt-4">
+    <div className="mt-3">
+      <div className="row">
+        <div className="col-4 col-lg-3 p-0 d-flex align-items-center">
+          <div className="id-income"></div><span>Income</span>
+        </div>
+        <div className="col-4 col-lg-3 p-0 d-flex align-items-center">
+          <div className="id-expenses"></div><span>Expenses</span>
+        </div>
+        <div className="col-4 p-0 d-flex align-items-center">
+          <div className="id-null"></div><span>Undefined</span>
+        </div>
+      </div>
       <table
-        className="table table-bordered table-bg"
+        className="table table-bordered table-bg mt-3"
         style={{ width: "100%" }}
       >
         <thead>
           <tr>
             <th
-              className="d-none d-md-block"
+              className=""
               style={{ border: "none" }}
               scope="col"
             >
@@ -95,39 +106,92 @@ const Table = () => {
             </th>
             <th scope="col">Description</th>
             <th scope="col">Amount</th>
-            <th scope="col">Category</th>
             <th scope="col"></th>
           </tr>
         </thead>
-        <tbody>
+        <tbody className="">
           {operations.map((op, i) => {
-            return (
-              <tr key={i}>
-                <td className="d-none d-md-block" style={{ border: "none" }}>
-                  {op.date}
-                </td>
-                <td>{op.description}</td>
-                <td>{op.amount}</td>
-                <td>{op.Categories.name}</td>
-                <td style={{ width: "110px" }}>
-                  <button
-                    onClick={(e) => edit(op.id, e)}
-                    className="btn btn-info"
-                    data-bs-toggle="modal"
-                    data-bs-target="#exampleModal"
-                    style={{ color: "white", marginRight: "5px" }}
-                  >
-                    <i className="bi bi-pencil"></i>
-                  </button>
-                  <button
-                    onClick={(e) => delet(op.id, e)}
-                    className="btn btn-danger"
-                  >
-                    <i className="bi bi-trash"></i>
-                  </button>
-                </td>
-              </tr>
-            );
+              if (op.operation=='income') {
+                return(
+                <tr className="table-success" key={i}>
+                  <td className="" style={{border: "none"}}>
+                    {op.date}
+                  </td>
+                  <td>{op.description}</td>
+                  <td>{op.amount}</td>
+                  <td style={{ width: "110px" }}>
+                    <button
+                      onClick={(e) => edit(op.id, e)}
+                      className="btn btn-info"
+                      data-bs-toggle="modal"
+                      data-bs-target="#exampleModal"
+                      style={{ color: "white", marginRight: "5px" }}
+                    >
+                      <i className="bi bi-pencil"></i>
+                    </button>
+                    <button
+                      onClick={(e) => delet(op.id, e)}
+                      className="btn btn-danger"
+                    >
+                      <i className="bi bi-trash"></i>
+                    </button>
+                  </td>
+                </tr>
+                )
+              }
+              if(op.operation=='expenses'){
+                return(<tr className="table-danger" key={i}>
+                  <td className="" style={{border: "none"}}>
+                    {op.date}
+                  </td>
+                  <td>{op.description}</td>
+                  <td>{op.amount}</td>
+                  <td style={{ width: "110px" }}>
+                    <button
+                      onClick={(e) => edit(op.id, e)}
+                      className="btn btn-info"
+                      data-bs-toggle="modal"
+                      data-bs-target="#exampleModal"
+                      style={{ color: "white", marginRight: "5px" }}
+                    >
+                      <i className="bi bi-pencil"></i>
+                    </button>
+                    <button
+                      onClick={(e) => delet(op.id, e)}
+                      className="btn btn-danger"
+                    >
+                      <i className="bi bi-trash"></i>
+                    </button>
+                  </td>
+                </tr>)
+              }
+              if(op.operation==''){
+                return(<tr className="table-light" key={i}>
+                  <td className="" style={{border: "none"}}>
+                    {op.date}
+                  </td>
+                  <td>{op.description}</td>
+                  <td>{op.amount}</td>
+                  <td style={{ width: "110px" }}>
+                    <button
+                      onClick={(e) => edit(op.id, e)}
+                      className="btn btn-info"
+                      data-bs-toggle="modal"
+                      data-bs-target="#exampleModal"
+                      style={{ color: "white", marginRight: "5px" }}
+                    >
+                      <i className="bi bi-pencil"></i>
+                    </button>
+                    <button
+                      onClick={(e) => delet(op.id, e)}
+                      className="btn btn-danger"
+                    >
+                      <i className="bi bi-trash"></i>
+                    </button>
+                  </td>
+                </tr>)
+              }
+            
           })}
         </tbody>
       </table>

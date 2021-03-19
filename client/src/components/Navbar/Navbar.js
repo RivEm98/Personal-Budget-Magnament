@@ -53,14 +53,8 @@ return(
                     </div>
                 </nav>
                 {/* user name */}
-                <div className="dropdown">
-                    <button className="btn user-name" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                        {userName}
-                    </button>
-                    <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li><Link className="dropdown-item" to="/account">My account</Link></li>
-                        <li><button onClick={logOut} className="dropdown-item">Log out</button></li>
-                    </ul>
+                <div className="d-flex align-items-center" style={{color:'white', marginLeft:'15px'}}>
+                    {userName}
                 </div>
             </div>
         </div>

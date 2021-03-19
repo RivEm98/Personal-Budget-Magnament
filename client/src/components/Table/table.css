@@ -1,0 +1,21 @@
+.id-income{
+height: 15px;
+width: 40px;
+background-color: #d1e7dd;
+border: 1px solid silver;
+margin-right: 5px;
+}
+.id-expenses{
+    margin-right: 5px;
+    height: 15px;
+    width: 40px;
+    background-color: #f8d7da;
+    border: 1px solid silver;
+}
+.id-null{
+    margin-right: 5px;
+    height: 15px;
+    width: 40px;
+    background-color: white;
+    border: 1px solid silver;
+}
