@@ -10,16 +10,12 @@ import CategoryIncome from '../page/CategoryIncome'
 import CategoryExpenses from '../page/CategoryExpenses'
 /* import PageNotFound from '../pages/PageNotFound'  */
 
-import {Provider} from 'react-redux'
-import generateStore from '../redux/store'
+
 
 
 function App(){
-
-    const store = generateStore();
-
     return (
-        <Provider store={store}>
+
             <BrowserRouter>
                 <Switch>
                     <Route exact path="/" component={Login} />
@@ -32,7 +28,6 @@ function App(){
                     {/* <Route component={PageNotFound} /> */}
                 </Switch>
             </BrowserRouter>
-        </Provider>
     )
 };
 export default App;
